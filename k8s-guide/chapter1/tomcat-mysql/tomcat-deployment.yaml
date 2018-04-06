@@ -15,9 +15,15 @@ spec:
         app: app-demo
         tier: frontend
     spec:
+      volumes:
+      - name: datavol
+        emptyDir: {}
       containers:
       - name: tomcat-demo
         image: tomcat
+        volumeMounts:
+        - mountPath: /mydata-data
+          name: datavol
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

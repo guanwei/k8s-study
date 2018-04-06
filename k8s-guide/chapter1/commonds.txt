@@ -27,3 +27,4 @@ kubectl get pods
 kubectl create -f tomcat-service.yaml
 kubectl get endpoints
 kubectl get svc tomcat-service -o yaml
+netstat -tlp | grep 31002
