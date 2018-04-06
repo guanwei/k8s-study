@@ -13,3 +13,10 @@ kubectl create -f myweb-svc.yaml
 kubectl get svc
 
 # 通过浏览器访问 http://虚拟机IP:30001/demo/
+
+kubectl get nodes
+kubectl describe node <node_name>
+
+kubectl scale rc redis-slave --replicas=3
+
+kubectl create -f tomcat-deployment.yaml
