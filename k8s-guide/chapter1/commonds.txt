@@ -20,3 +20,10 @@ kubectl describe node <node_name>
 kubectl scale rc redis-slave --replicas=3
 
 kubectl create -f tomcat-deployment.yaml
+kubectl get deployments
+kubectl get rs
+kubectl get pods
+
+kubectl create -f tomcat-service.yaml
+kubectl get endpoints
+kubectl get svc tomcat-service -o yaml
