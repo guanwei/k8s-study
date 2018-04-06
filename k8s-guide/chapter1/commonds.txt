@@ -8,6 +8,7 @@ kubectl get svc
 
 kubectl create -f myweb-rc.yaml
 kubectl get pods
+
 kubectl create -f myweb-svc.yaml
 kubectl get svc
 
