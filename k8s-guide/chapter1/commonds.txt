@@ -2,3 +2,13 @@ kubectl create -f mysql-rc.yaml
 kubectl get rc
 kubectl get pods
 docker ps | grep mysql
+
+kubectl create -f mysql-svc.yaml
+kubectl get svc
+
+kubectl create -f myweb-rc.yaml
+kubectl get pods
+kubectl create -f myweb-svc.yaml
+kubectl get svc
+
+# 通过浏览器访问 http://虚拟机IP:30001/demo/
