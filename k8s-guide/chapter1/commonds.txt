@@ -28,3 +28,14 @@ kubectl create -f tomcat-service.yaml
 kubectl get endpoints
 kubectl get svc tomcat-service -o yaml
 netstat -tlp | grep 31002
+
+# 通过gcloud命令创建一个PD：
+gcloud compute disks create --size=500GB --zone=us-centrall-a my-data-disk
+# 通过aws ec2 create-volume命令创建一个EBS volume：
+aws ec2 create-volume --availability-zone eu-west-1a --size 10 --volume-type gp2
+
+kubectl get namespaces
+kubectl create -f development-ns.yaml
+kubectl get namespaces
+kubectl create -f busybox-pod.yaml
+kubectl get pods --namespace=development
