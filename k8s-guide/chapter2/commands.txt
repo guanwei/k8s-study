@@ -75,3 +75,9 @@ kubectl get rc
 kubectl get pods
 kubectl create -f frontend-service.yaml
 kubectl get services
+
+# 通过浏览器访问 http://虚拟机IP:30002/
+
+kubectl create -f frontend-localredis-pod.yaml
+kubectl get pods
+kubectl describe pod redis-php
