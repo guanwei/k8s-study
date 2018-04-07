@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: healthcheck-tcpsocket
+  name: healthcheck-httpget
 spec:
   containers:
   - name: nginx
