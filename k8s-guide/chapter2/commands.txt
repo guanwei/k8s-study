@@ -107,6 +107,14 @@ kubectl exec -ti cm-test-app -- bash
 > cat /configfiles/server.xml
 > cat /configfiles/logging.properties
 
+# Pod健康检查
+kubectl create -f liveness-exec.yaml
+kubectl get pods
+kubectl create -f healthcheck-tcpsocket.yaml
+kubectl get pods
+kubectl create -f healthcheck-httpget.yaml
+kubectl get pods
+
 # Pod调度
 kubectl label nodes k8s-node-1 zone=north
 kubectl replace -f redis-master-controller.yaml
