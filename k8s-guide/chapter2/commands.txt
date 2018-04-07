@@ -86,3 +86,24 @@ kubectl create -f applogs-volume-pod.yaml
 kubectl logs volume-pod -c busybox
 kubectl exec -ti volume-pod -c tomcat -- ls /usr/local/tomcat/logs
 kubectl exec -ti volume-pod -c tomcat -- tail /usr/local/tomcat/logs/catalina.2016-07-29.log
+
+# ConfigMap: 容器应用的配置管理
+kubectl create -f cm-appvars.yaml
+kubectl get configmap
+kubectl describe configmap cm-appvars
+kubectl get configmap cm-appvars -o yaml
+
+kubectl create -f cm-test-pod.yaml
+kubectl get pods --show-all
+kubectl logs cm-test-pod
+
+kubectl create -f cm-appconfigfiles.yaml
+kubectl get configmap
+kubectl describe configmap cm-appconfigfiles
+kubectl get configmap cm-appconfigfiles -o yaml
+
+kubectl create -f cm-test-app.yaml
+kubectl exec -ti cm-test-app -- bash
+> cat /configfiles/server.xml
+> cat /configfiles/logging.properties
+
