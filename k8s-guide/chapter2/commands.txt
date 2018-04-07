@@ -81,3 +81,8 @@ kubectl get services
 kubectl create -f frontend-localredis-pod.yaml
 kubectl get pods
 kubectl describe pod redis-php
+
+kubectl create -f applogs-volume-pod.yaml
+kubectl logs volume-pod -c busybox
+kubectl exec -ti volume-pod -c tomcat -- ls /usr/local/tomcat/logs
+kubectl exec -ti volume-pod -c tomcat -- tail /usr/local/tomcat/logs/catalina.2016-07-29.log
