@@ -69,3 +69,9 @@ kubectl get rc
 kubectl get pods
 kubectl create -f redis-slave-service.yaml
 kubectl get services
+
+kubectl create -f frontend-controller.yaml
+kubectl get rc
+kubectl get pods
+kubectl create -f frontend-service.yaml
+kubectl get services
