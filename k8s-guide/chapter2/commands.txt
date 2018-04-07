@@ -107,3 +107,7 @@ kubectl exec -ti cm-test-app -- bash
 > cat /configfiles/server.xml
 > cat /configfiles/logging.properties
 
+# Pod调度
+kubectl label nodes k8s-node-1 zone=north
+kubectl replace -f redis-master-controller.yaml
+kubectl get pods -o wide

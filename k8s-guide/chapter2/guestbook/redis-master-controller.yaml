@@ -18,3 +18,5 @@ spec:
         image: kubeguide/redis-master
         ports:
         - containerPort: 6379
+      nodeSelector:
+        zone: north
