@@ -1,0 +1,66 @@
+# 获取多个Pod信息
+kubectl get pods pod1 pod2
+
+# 获取多种对象的信息
+kubectl get pod/pod1 rc/rc1
+
+# 同时应用多个yaml文件
+kubectl get pod -f pod1.yaml -f pod2.yaml
+kubectl create -f pod1.yaml -f rc1.yaml -f service1.yaml
+
+# 显示Pod的更多信息
+kubectl get pod <pod-name> -o wide
+
+# 以yaml格式显示Pod的详细信息
+kubectl get pod <pod-name> -o yaml
+
+# 以自定义列名显示Pod的信息
+kubectl get pod <pod-name> -o=custom-columns=NAME:.metadata.name,RSRC:.metadata.resourceVersion
+
+# 基于文件的自定义列名输出
+kubectl get pods <pod-name> -o=custom-columns-file=template.txt
+
+template.txt文件内容为：
+NAME               RSRC
+metadata.name      metadata.resourceVersion
+输出结果为：
+NAME       RSRC
+pod-name   52305
+
+# 将输出结果按照某个字段排序
+kubectl get pods --sort-by=.metadata.name
+
+# 创建资源对象
+kubectl create -f my-service.yaml -f my-rc.yaml
+kubectl create -f <directory>
+
+# 查看资源对象
+kubectl get pods
+kubectl get rc,service
+
+# 描述资源对象
+kubectl describe nodes <node-name>
+kubectl describe pods/<pod-name>
+kubectl describe pods <rc-name>
+
+# 删除资源对象
+kubectl delete -f pod.yaml
+kubectl delete pods,service -l name=<label-name>
+kubectl delete pods --all
+
+# 执行容器命令
+kubectl exec <pod-name> date
+kubectl exec <pod-name> -c <container-name> date
+kubectl exec -ti <pod-name> -c <container-name> /bin/bash
+
+# 查看容器的日志
+kubectl logs <pod-name>
+kubectl logs -f <pod-name> -c <container-name>
+
+# Guestbook示例：Hello World
+kubectl create -f redis-master-controller.yaml
+kubectl get rc
+kubectl get pods
+kubectl create -f redis-master-service.yaml
+kubectl get services
+
