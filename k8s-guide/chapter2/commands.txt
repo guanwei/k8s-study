@@ -119,3 +119,8 @@ kubectl get pods
 kubectl label nodes k8s-node-1 zone=north
 kubectl replace -f redis-master-controller.yaml
 kubectl get pods -o wide
+
+kubectl create -f fluentd-ds.yaml
+kubectl get daemonset --namespace=kube-system
+kubectl get pods --namespace=kube-system
+
