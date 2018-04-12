@@ -131,6 +131,7 @@ kubectl get daemonset --namespace=kube-system
 kubectl get pods --namespace=kube-system
 
 # Job Template Expansion 模式
+mkdir -p jobs
 for i in apple banana cherry
 do
   cat job.yaml.txt | sed "s/\$ITEM/$i/" > ./jobs/job-$i.yaml
@@ -139,3 +140,16 @@ done
 ls jobs
 kubectl create -f jobs
 kubectl get jobs -l jobgroup=jobexample
+
+# Pod 的扩容和缩容
+kubectl scale rc redis-slave --replicas=3
+kubectl get pods
+kubectl scale rc redis-slave --replicas=1
+kubectl get pods
+
+kubectl create -f php-apache-rc.yaml
+kubectl create -f php-apache-svc.yaml
+kubectl autoscale rc php-apache --min=1 --max=10 --cpu-percent=50
+
+kubectl create -f hpa-php-apache.yaml
+kubectl get hpa
