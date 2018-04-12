@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: fluentd-cloud-logging
-        image: gcr.io/google_containers/fluentd-elasticsearch:1.17
+        image: gcr.io/google-containers/fluentd-elasticsearch:1.17
         resources:
           limits:
             cpu: 100m
