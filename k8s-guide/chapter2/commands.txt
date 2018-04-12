@@ -102,6 +102,12 @@ kubectl get configmap
 kubectl describe configmap cm-appconfigfiles
 kubectl get configmap cm-appconfigfiles -o yaml
 
+kubectl create configmap cm-server.xml --from-file=server.xml
+kubectl describe configmap cm-server.xml
+kubectl create configmap cm-appconf --from-file=configfiles
+kubectl describe configmap cm-appconf
+kubectl create configmap cm-appenv --from-literal=loglevel=info --from-literal=appdatadir=/var/data
+
 kubectl create -f cm-test-app.yaml
 kubectl exec -ti cm-test-app -- bash
 > cat /configfiles/server.xml
