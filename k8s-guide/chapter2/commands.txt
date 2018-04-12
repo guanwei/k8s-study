@@ -155,6 +155,9 @@ kubectl create -f hpa-php-apache.yaml
 kubectl get hpa
 
 kubectl create -f busybox-pod.yaml
-kubectl exec -ti busybox -- bash
+kubectl exec -ti busybox -- sh
 > while true; do wget -q -O- http://php-apache > /dev/null; done
 kubectl get rc
+
+# Pod 的滚动升级
+kubectl rolling-update redis-master -f redis-master-controller-v2.yaml
