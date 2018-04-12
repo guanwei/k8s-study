@@ -130,3 +130,12 @@ kubectl create -f fluentd-ds.yaml
 kubectl get daemonset --namespace=kube-system
 kubectl get pods --namespace=kube-system
 
+# Job Template Expansion 模式
+for i in apple banana cherry
+do
+  cat job.yaml.txt | sed "s/\$ITEM/$i/" > ./jobs/job-$i.yaml
+done
+
+ls jobs
+kubectl create -f jobs
+kubectl get jobs -l jobgroup=jobexample
