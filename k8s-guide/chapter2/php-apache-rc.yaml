@@ -9,7 +9,7 @@ spec:
       name: php-apache
       labels:
         app: php-apache
-    sepc:
+    spec:
       containers:
       - name: php-apache
         image: gcr.io/google-containers/hpa-example
