@@ -153,3 +153,8 @@ kubectl autoscale rc php-apache --min=1 --max=10 --cpu-percent=50
 
 kubectl create -f hpa-php-apache.yaml
 kubectl get hpa
+
+kubectl create -f busybox-pod.yaml
+kubectl exec -ti busybox -- bash
+> while true; do wget -q -O- http://php-apache > /dev/null; done
+kubectl get rc
