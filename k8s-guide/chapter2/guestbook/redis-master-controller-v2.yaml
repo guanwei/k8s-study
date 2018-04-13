@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: master
-        image: kubeguide/redis-master:2.0
+        image: kubeguide/redis-master:latest
         ports:
         - containerPort: 6379
