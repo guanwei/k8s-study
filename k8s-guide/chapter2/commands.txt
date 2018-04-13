@@ -190,5 +190,27 @@ curl 10.100.254.93:8081
 # Service提供两种负载均衡策略：RoundRobin (默认) 和 SessionAffinity
 
 # 将容器应用的端口映射到物理机
+# 1. 通过容器级别的hostPort
 kubectl create -f pod-hostport.yaml
-curl 192.168.100.21:8081
+curl 192.168.18.3:8081
+
+# 2. 通过Pod级别的hostNetwork=true，该Pod中的所有容器的端口号都将被直接映射到物理机上
+kubectl create -f pod-hostnetwork.yaml
+curl 192.168.18.4:8080
+
+# 将Service的端口映射到物理机
+# 1. 通过nodePort映射到物理机
+kubectl create -f webapp-svc-nodeport.yaml
+curl 192.168.18.3:8081
+
+# 2. 通过LoadBalancer映射到云服务商提供的LoadBalancer地址，这种做法仅用于在公有云上
+
+# 通过DNS查找Service
+kubectl exec busybox -- nslookup redis-master
+kubectl exec busybox -- nslookup kube-dns.kube-system
+
+# Ingress：HTTP7层路由机制
+kubectl create -f nginx-ingress-rc.yaml
+kubectl get pods
+kubectl create -f ingress.yaml
+kubectl get ingress
