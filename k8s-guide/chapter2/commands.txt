@@ -171,16 +171,24 @@ kubectl create -f webapp-rc.yaml
 # 获得Pod的IP地址
 kubectl get pods -l app=webapp -o yaml | grep podIP
 # 访问Pod提供的Tomcat服务
-curl 172.17.1.3:8080
+kubectl exec -ti webapp-kzhnw -- bash
+curl 10.244.1.55:8080
 
 # 通过kubectl expose命令来创建Service
-kubectl expose rc webapp
+kubectl expose rc webapp --port=8080
 kubectl get svc
-curl 169.169.235.79:8080
+kubectl exec -ti webapp-kzhnw -- bash
+curl 10.96.178.236:8080
 
 # 通过配置文件定义Service
+kubectl delete svc webapp
 kubectl create -f webapp-svc.yaml
 kubectl get svc
-curl 169.169.28.190:8081
+kubectl exec -ti webapp-fcp7m -- bash
+curl 10.100.254.93:8081
 
-# Service提供两种负载均衡策略：RoundRobin 和 SessionAffinity
+# Service提供两种负载均衡策略：RoundRobin (默认) 和 SessionAffinity
+
+# 将容器应用的端口映射到物理机
+kubectl create -f pod-hostport.yaml
+curl 192.168.100.21:8081

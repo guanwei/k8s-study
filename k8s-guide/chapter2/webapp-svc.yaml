@@ -4,7 +4,11 @@ metadata:
   name: webapp
 spec:
   ports:
-  - port: 8081
+  - port: 8080
     targetPort: 8080
+    name: web
+  - port: 8005
+    targetPort: 8005
+    name: management
   selector:
     app: webapp
